@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+	.content_left{
+    width:25%;
+    height:100%;
+    /* border:1px solid red;*/ 
+    float:left;
+    }
+    .content_right{
+    margin-top:1px;
+    width:75%;
+    height:96%;
+    /* border:1px solid blue; */ 
+    float:right; 
+    } 
+    .dropdown_main{
+    padding-top:15%;
+    padding-left:20%;
+    width:50%;
+    } 
+    .btns{
+    	font-size: 15px;
+    	padding: 6px 12px;
+    	border-radius: 5px;
+    }
+    .dropdown-toggle1
+    {
+        font-size: 20px;
+	    padding: 10px 25px;
+	    border-radius: 12px;
+	    /*background-color:#f3f3f3;*/  
+    }
+    .dropdown-menu1{
+    left:40%;
+    }
+    .dropdown-menu1>li>a {
+        padding: 10px 20px;
+    }
+    .bootstrap3{
+    width:95%;
+    margin-right:5%; 
+    }.panels{
+    width:95%;
+    margin-right:5%;
+    margin-bottom:5px;
+    height:120px;
+    }/*style="margin-top:15px"*/
+    .modal .control-label{
+    padding-top:7px;
+    }.modal-body .row{
+    margin-bottom:15px;
+    }.form-control{
+    font-size:16px;
+    }/* .modal-header{
+      background-color:#33cc99;
+      border-radius:5px 5px 0 0;
+      }   */  
+      .thisopen{
+         background-color:#e6e6e6;
+      }
+     .panel_User{
+    width:95%;
+    margin-right:5%;
+    margin-bottom:5px;
+    height:165px; 
+}
+.panel_User .row{
+	margin-bottom:15px;   
+} .modal-header{
+      background-color:#33cc99;
+      border-radius:5px 5px 0 0;
+      }  

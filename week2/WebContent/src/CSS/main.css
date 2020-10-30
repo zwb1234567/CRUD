@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+    *{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }   
+	.nav {	
+        width:86%;
+        margin-left: 7%;
+	    list-style-type: none;	    
+	    padding: 0;
+	    overflow: hidden;
+	    background-color: #f3f3f3;
+	    border: 1px solid #e7e7e7;
+	}	
+	.nav li {
+	    float: left; 
+        
+	}	
+	.nav li a {
+        cursor:pointer;
+	    display: block;
+	    color: #666;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none; 
+	}
+	.nav li a:hover{
+		background-color: #ddd;
+	}
+	.active {
+    	color:white !important; 
+    	background-color: #4CAF50 !important;
+	}
+    #about{
+        float:right;
+    }
+    .header{
+        width:86%;
+        margin-left:7%;
+        height:60px;
+    }
+    .header .span2{
+        float:right;
+        line-height:60px;
+    }
+    .header .span2 a{
+    	 padding-left: 15px;
+    	 color: #4CAF50;
+    	 text-decoration: none; 
+    }
+    .content{
+    width:86%; 
+    height:580px;
+    margin-left:7%;
+    margin-top:20px;
+    border:2px solid #e8e8e8;
+    border-radius: 10px;
+    }
+    .span1{
+    	line-height:60px;
+    	font-size:26px;
+    	font-family:"微软雅黑";
+    	font-weight:500;
+    	font-style:italic;
+    }
+	    .btn:focus,
+	.btn:active:focus,
+	.btn.active:focus,
+	.btn.focus,
+	.btn:active.focus,
+	.btn.active.focus {
+    outline: none; 
+    border-color:#ccc;          
+} 

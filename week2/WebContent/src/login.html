@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type ="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type ="text/css" href="bootstrap/css/toastr.min.css" >
+    <link rel="stylesheet" type ="text/css" href="CSS/newModel.css" >
+    <link rel="stylesheet" type ="text/css" href="CSS/Login.css" >
+    <script src="bootstrap/jquery.min.js"></script>   
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/toastr.min.js"></script>
+    <script src="bootstrap/vue.min.js"></script>       
+    <title>登录界面</title>
+</head>
+<body> 
+    <div class="login">
+        <div class="head">
+           		 欢迎访问停车场管理系统   
+        </div>
+        <div class = "login_content">
+        <div class="login_body">
+          <form class="form-horizontal" method="POST" id="formLogin">
+            <div class="form-group">
+              <label for="userName" class="col-sm-2 control-label login_label">用户名：</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="userName" placeholder="用户名" name="userName">
+                <img src="img/username.png" alt="" class="img_user"> 
+              </div>      
+              <span class="col-sm-4 info_span" id = "error_Username"></span>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label login_label">密码：</label>
+              <div class="col-sm-6">
+                <input type="password" class="form-control" id="password" placeholder="密码" name="password">
+                <img src="img/psd.png" alt="" class="img_user"> 
+              </div>
+               <span class="col-sm-4 info_span" id = "error_Userpsd"></span>
+            </div>
+            <div class="form-group">
+              <label for="Verification Code" class="col-sm-2 control-label login_label">验证码：</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="VerificationCode" placeholder="验证码" name="VerificationCode">
+                <img src="img/yzm.png" alt="" class="img_user">  
+              </div>
+              <div class="col-sm-4"><img src="/week2/CreateVCodeImageController.do" alt="" title="看不清楚，换一张" class="yzm" id="yzmimg"></div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-6">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id = "checkbox"> 一周内免登陆
+                  </label>                 
+                </div>
+              </div>  
+               <span class="col-sm-4" id = "error_yzm" style = "font-size:14px;font-weight:600;color:#DC143C;"></span>        
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-3">
+                <button type = "button" class="btn btn-success" id="btn_new" data-toggle="modal" data-target="#myModal_new">注册</button> 
+              </div>
+              <div class="col-sm-3"> 
+              	<button type = "button" class="btn btn-info" id="btn_login">登录</button>              
+              </div>
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+    	 <!--注册模态框-->
+	<div class="modal fade add_modle" tabindex="-1" role="dialog" id = "myModal_new" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" style = "color:white">注册</h4>   	             
+	      </div>
+	      <div class="modal-body">
+	      <form id = "form_new">
+ 	         <div class="row">
+              	<label for="NewModelUserName" class="col-sm-3 col-sm-offset-2 control-label">用户名：</label>
+              	<div class="col-sm-6" style="margin-left:-50px;" id = "div_NewModelUserName">
+              	<input type="text" class="form-control" id="NewModelUserName" placeholder="用户名" name="NewModelUserName">
+              	<img src="img/username1.png" alt="" class="img_newuser">
+              	<img src="img/ok.png" alt="" class="ok">
+              	<img src="img/error.png" alt="" class="error">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo0"></div>	            
+            </div>
+            <div class="row">
+              	<label for="NewModelName" class="col-sm-3 col-sm-offset-2 control-label">真实姓名：</label>
+              	<div class="col-sm-6" style="margin-left:-50px;" id = "div_NewModelName">
+              	<input type="text" class="form-control" id="NewModelName" placeholder="真实姓名" name="NewModelName">
+              	<img src="img/username1.png" alt="" class="img_newuser">
+              	<img src="img/ok.png" alt="" class="ok">
+              	<img src="img/error.png" alt="" class="error">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo1"></div>	         
+            </div>
+            <div class="row">
+              	<label for="NewModelProvince" class="col-sm-3 col-sm-offset-2 control-label">选择省份：</label>
+              	<div class="col-sm-6" style = "margin-left:-50px;" id = "div_NewModelProvince">             	
+				    <select class="form-control" id = "NewModelProvince" name = "selectProvince" @change = "queryCity()">
+ 				         <option value = "">请选择省份</option> 
+ 				         <option v-for = 'province in provinceList' :value = 'province.provinceId'>
+ 				         {{province.provinceName}}
+ 				         </option> 
+				    </select>
+				    <img src="img/city.png" alt="" class="img_newuser"> 	
+				    <img src="img/ok.png" alt="" class="ok">		     
+				</div> 
+				  <div class = "col-sm-2 model_errorInfo" id = "model_errorInfo2"></div>         				     		       
+            </div>
+            <div class="row">
+              	<label for="NewModelCity" class="col-sm-3 col-sm-offset-2 control-label">选择城市：</label>
+              	<div class="col-sm-6" style = "margin-left:-50px;" id = "div_NewModelCity">              
+				    <select class="form-control" id = "NewModelCity" name = "selectCity">
+				        <option value = "">请选择城市</option>
+				        <option v-for = 'city in cityList' :value = 'city.cityId'>
+ 				         {{city.cityName}}
+ 				        </option> 
+				    </select>  
+				    <img src="img/city.png" alt="" class="img_newuser">
+				    <img src="img/ok.png" alt="" class="ok">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo3"></div>            				     		       
+            </div> 
+            <div class="row">
+              	<label for="NewModelEmail" class="col-sm-3 col-sm-offset-2 control-label">邮箱：</label>
+              	<div class="col-sm-6" style="margin-left:-50px;" id = "div_NewModelEmail">
+              	<input type="text" class="form-control" id="NewModelEmail" placeholder="邮箱" name="NewModelEmail">
+              	<img src="img/email.png" alt="" class="img_newuser">
+              	<img src="img/ok.png" alt="" class="ok">
+              	<img src="img/error.png" alt="" class="error">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo4"></div>	         
+            </div>            
+            <div class="row">
+              	<label for="NewModelPsd" class="col-sm-3 col-sm-offset-2 control-label">密码：</label>
+              	<div class="col-sm-6" style="margin-left:-50px;" id = "div_NewModelPsd">
+              	<input type="password" class="form-control" id="NewModelPsd" placeholder="密码" name="NewModelPsd">
+              	<img src="img/psd1.png" alt="" class="img_newuser"> 
+              	<img src="img/lookPsd.png" alt="" class="lookPsd" id = "lookpsd">
+              	<img src="img/ok.png" alt="" class="ok">
+              	<img src="img/error.png" alt="" class="error">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo5"></div>	         
+            </div>
+            <div class="row">
+              	<label for="NewModelpsd2" class="col-sm-3 col-sm-offset-2 control-label">确认密码：</label>
+              	<div class="col-sm-6" style="margin-left:-50px;" id = "div_NewModelpsd2">
+              	<input type="password" class="form-control" id="NewModelpsd2" placeholder="确认密码" name="NewModelpsd2">
+              	<img src="img/psd1.png" alt="" class="img_newuser">
+              	<img src="img/lookPsd.png" alt="" class="lookPsd" id = "lookPsd"> 
+              	<img src="img/ok.png" alt="" class="ok">
+              	<img src="img/error.png" alt="" class="error">
+              	</div>
+              	<div class = "col-sm-2 model_errorInfo" id = "model_errorInfo6"></div>	         
+            </div>  
+            </form>                                               
+	      </div>
+	      <div class="modal-footer">	      	
+	      <a data-dismiss="modal" class="info_h5">已有账号,请登陆</a>  
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
+	        <button type="button" class="btn btn-info" id = "addModelButton">注册</button> 
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->   
+</body>
+<script> 
+    $.getScript("JS/Login.js", function () { });   
+</script>
+</html>
